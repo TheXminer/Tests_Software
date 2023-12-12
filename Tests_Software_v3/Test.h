@@ -1,13 +1,12 @@
 #pragma once
 #include "Editor.h"
 #include "User.h"
-#include "Answers.h"
 class Test
 {
-	Editor editor;
 	bool isTestStarted = false;
-	std::unordered_set<std::string,std::vector<SingleChoiseTest>> answers;
+	//std::unordered_map<std::string,std::vector<SingleChoiseTest>> answers;
 public:
+	Editor editor;
 	User user;
 //Student
 	int startTest(int nTest = 1);
@@ -18,5 +17,5 @@ public:
 	bool createNewTest(std::vector<Answer*>);
 	std::vector<Answer> viewTest(std::string testName);
 	Answer* editTest(std::string testName, int questionNumber);
-	std::vector<SingleChoiseTest> viewUserAnswers(std::string testName);
+	//std::vector<SingleChoiseTest> viewUserAnswers(std::string testName);
 };

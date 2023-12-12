@@ -10,8 +10,8 @@ class Editor
 public:
 	void addTest(std::string nameOfSet, Question* question);
 	void deleteTest(std::string nameOfSet, int nOfTest);
-	void editTest(std::string nameOfSet, int nOfTest, Answer* question);
+	void editTest(std::string nameOfSet, int nOfTest, Question* question);
 	Question* getTest(std::string nameOfSet, int nOfTest);
-	std::vector<Question*> getSetOfTests(std::string nameOfSet, int nOfTest);
+	std::vector<Question*>* getSetOfTests(std::string nameOfSet);
 };
 

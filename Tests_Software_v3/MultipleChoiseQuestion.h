@@ -1,12 +1,10 @@
 #pragma once
 #include "Question.h"
-
-class SingleChoiceTest :
+class MultipleChoiseQuestion :
     public Question
 {
 public:
     Question::Question;
-
     void display() const override;
 };
 

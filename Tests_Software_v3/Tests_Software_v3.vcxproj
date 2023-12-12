@@ -127,7 +127,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="MultipleCoiseTest.cpp" />
+    <ClCompile Include="MatchingQuestion.cpp" />
+    <ClCompile Include="MultipleChoiseQuestion.cpp" />
+    <ClCompile Include="Pair.cpp" />
     <ClCompile Include="SingleChoiseTest.cpp" />
     <ClCompile Include="Editor.cpp" />
     <ClCompile Include="Question.cpp" />
@@ -137,7 +139,9 @@
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MultipleCoiseTest.h" />
+    <ClInclude Include="MatchingQuestion.h" />
+    <ClInclude Include="MultipleChoiseQuestion.h" />
+    <ClInclude Include="Pair.h" />
     <ClInclude Include="SingleChoiseTest.h" />
     <ClInclude Include="Editor.h" />
     <ClInclude Include="Question.h" />

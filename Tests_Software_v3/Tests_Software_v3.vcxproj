@@ -127,19 +127,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Answers.cpp" />
+    <ClCompile Include="MultipleCoiseTest.cpp" />
+    <ClCompile Include="SingleChoiseTest.cpp" />
     <ClCompile Include="Editor.cpp" />
     <ClCompile Include="Question.cpp" />
-    <ClCompile Include="SetQA.cpp" />
+    <ClCompile Include="Answer.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="Tests_Software_v3.cpp" />
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Answers.h" />
+    <ClInclude Include="MultipleCoiseTest.h" />
+    <ClInclude Include="SingleChoiseTest.h" />
     <ClInclude Include="Editor.h" />
     <ClInclude Include="Question.h" />
-    <ClInclude Include="SetQA.h" />
+    <ClInclude Include="Answer.h" />
     <ClInclude Include="Test.h" />
     <ClInclude Include="User.h" />
   </ItemGroup>

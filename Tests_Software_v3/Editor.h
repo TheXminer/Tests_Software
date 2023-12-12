@@ -1,17 +1,17 @@
 #pragma once
-#include "SetQA.h"
+#include "Question.h"
 #include <string>
 #include <vector>
-#include <unordered_set>
+#include <unordered_map>
 
 class Editor
 {
-	std::unordered_set<std::string, std::vector<SetQA*>> setOfSets;
+	std::unordered_map<std::string, std::vector<Question*>*> setOfTests;
 public:
-	void addTest(SetQA* question);
+	void addTest(std::string nameOfSet, Question* question);
 	void deleteTest(std::string nameOfSet, int nOfTest);
-	void editTest(std::string nameOfSet, int nOfTest, SetQA* question);
+	void editTest(std::string nameOfSet, int nOfTest, Answer* question);
 	Question* getTest(std::string nameOfSet, int nOfTest);
-	std::vector<SetQA*> getSetOfTests(std::string nameOfSet, int nOfTest);
+	std::vector<Question*> getSetOfTests(std::string nameOfSet, int nOfTest);
 };
 

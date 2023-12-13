@@ -1,27 +1,22 @@
 #include "User.h"
 
-bool User::logIn(std::string user) {
+status User::logIn(std::string user) {
 	if (user == "admin") {
-		isAdmin = true;
-		isAccessAvailable = true;
-		return true;
+		authorizeStatus = AuthorisedAsAdmin;
+		return authorizeStatus;
 	}
 	if (user == "user") {
-		isAdmin = false;
-		isAccessAvailable;
-		return true;
+		authorizeStatus = AuthorisedAsStudent;
+		return authorizeStatus;
 	}
-	return false;
+	return authorizeStatus;
 }
 
-bool User::checkAccess() {
-	return isAccessAvailable;
+status User::checkAccess() {
+	return authorizeStatus;
 }
 
-bool User::Exit() {
-	if (!isAccessAvailable)
-		return false;
-	isAdmin = false;
-	isAccessAvailable = false;
-	return true;
+status User::Exit() {
+	authorizeStatus = NonAuthorized;
+	return authorizeStatus;
 }

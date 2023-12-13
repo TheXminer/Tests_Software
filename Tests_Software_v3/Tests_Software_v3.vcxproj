@@ -134,6 +134,7 @@
     <ClCompile Include="Editor.cpp" />
     <ClCompile Include="Question.cpp" />
     <ClCompile Include="Answer.cpp" />
+    <ClCompile Include="StudentAnswers.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="Tests_Software_v3.cpp" />
     <ClCompile Include="User.cpp" />
@@ -146,6 +147,7 @@
     <ClInclude Include="Editor.h" />
     <ClInclude Include="Question.h" />
     <ClInclude Include="Answer.h" />
+    <ClInclude Include="StudentAnswers.h" />
     <ClInclude Include="Test.h" />
     <ClInclude Include="User.h" />
   </ItemGroup>

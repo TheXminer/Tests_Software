@@ -2,8 +2,8 @@
 #include <string>
 enum status {
 	NonAuthorized,
-	AuthorisedAsStudent,
-	AuthorisedAsAdmin
+	AuthorizedAsStudent,
+	AuthorizedAsAdmin
 };
 
 class User

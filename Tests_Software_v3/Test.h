@@ -1,19 +1,28 @@
 #pragma once
-#include "Editor.h"
-#include "User.h"
-#include "StudentAnswers.h"
+#include <stdio.h>
+#include "Teacher.h"
+
+//enum userAction {
+//	Exit,
+//	StartTest,
+//	ViewMarks,
+//	ViewTest,
+//	Edit,
+//	Delete,
+//	Add,
+//	DeleteSet
+//};
 
 class Test
 {
-	status status = NonAuthorized;
 	StudentAnswers studentAnswers;
 	Editor editor;
 	User user;
 	void authorize();
-	void startTest(std::string testName);
-	int* randomizeNumbers(int size);
-	bool deleteTest(std::string testName);
-	bool* editTest(std::string testName, int questionNumber);
+	//userAction getAction(std::string nameOfAction);
+	//void studentActions();//stud
+	//void teacherActions();//teach
+	//void showTeacherAction();
 public:
 	void startApplication();
 };

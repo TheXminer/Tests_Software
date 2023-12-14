@@ -1,6 +1,6 @@
-#include "SingleChoiseTest.h"
+#include "SingleChoiseQuestion.h"
 
-void SingleChoiceTest::display() const
+void SingleChoiceQuestion::display() const
 {
     Question::display();
     std::cout << "Type: " << SINGLE_CHOISE << std::endl;

@@ -1,7 +1,7 @@
 #pragma once
 #include "Question.h"
 
-class SingleChoiceTest :
+class SingleChoiceQuestion :
     public Question
 {
 public:

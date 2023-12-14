@@ -2,11 +2,11 @@
 
 status User::logIn(std::string user) {
 	if (user == "admin") {
-		authorizeStatus = AuthorisedAsAdmin;
+		authorizeStatus = AuthorizedAsAdmin;
 		return authorizeStatus;
 	}
 	if (user == "user") {
-		authorizeStatus = AuthorisedAsStudent;
+		authorizeStatus = AuthorizedAsStudent;
 		return authorizeStatus;
 	}
 	return authorizeStatus;

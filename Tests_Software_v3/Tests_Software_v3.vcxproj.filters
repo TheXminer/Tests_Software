@@ -24,9 +24,6 @@
     <ClCompile Include="Tests_Software_v3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Question.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Editor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -36,16 +33,13 @@
     <ClCompile Include="Test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Pair.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MatchingQuestion.cpp">
       <Filter>Source Files\Questions</Filter>
     </ClCompile>
     <ClCompile Include="MultipleChoiseQuestion.cpp">
       <Filter>Source Files\Questions</Filter>
     </ClCompile>
-    <ClCompile Include="SingleChoiseTest.cpp">
+    <ClCompile Include="SingleChoiseQuestion.cpp">
       <Filter>Source Files\Questions</Filter>
     </ClCompile>
     <ClCompile Include="Answer.cpp">
@@ -54,11 +48,20 @@
     <ClCompile Include="StudentAnswers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Student.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Teacher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pair.cpp">
+      <Filter>Source Files\Questions</Filter>
+    </ClCompile>
+    <ClCompile Include="Question.cpp">
+      <Filter>Source Files\Questions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Question.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Editor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -68,16 +71,13 @@
     <ClInclude Include="Test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Pair.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MatchingQuestion.h">
       <Filter>Header Files\Questions</Filter>
     </ClInclude>
     <ClInclude Include="MultipleChoiseQuestion.h">
       <Filter>Header Files\Questions</Filter>
     </ClInclude>
-    <ClInclude Include="SingleChoiseTest.h">
+    <ClInclude Include="SingleChoiseQuestion.h">
       <Filter>Header Files\Questions</Filter>
     </ClInclude>
     <ClInclude Include="Answer.h">
@@ -85,6 +85,18 @@
     </ClInclude>
     <ClInclude Include="StudentAnswers.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Student.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Teacher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pair.h">
+      <Filter>Header Files\Questions</Filter>
+    </ClInclude>
+    <ClInclude Include="Question.h">
+      <Filter>Header Files\Questions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

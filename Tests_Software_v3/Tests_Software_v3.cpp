@@ -1,13 +1,11 @@
 ﻿#include <iostream>
 #include "Test.h"
-#include "SingleChoiseTest.h"
-#include "MultipleChoiseQuestion.h"
-#include "MatchingQuestion.h"
 
 int main()
 {
     Test test;
-	Question* question = new SingleChoiceTest("Who are you?");;
+	test.startApplication();
+	//Question* question = new SingleChoiceTest("Who are you?");;
 	//question->addAnswer('a', "Master", false);
 	//question->addAnswer('b', "Slave", true);
 	//test.editor.addTest("FirstTest", question);

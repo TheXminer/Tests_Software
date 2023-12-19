@@ -7,6 +7,7 @@
 class Editor
 {
 	std::unordered_map<std::string, std::vector<Question*>*> setOfTests;
+	bool deleteTestSetName(std::string nameOfSet);
 public:
 	std::vector<std::string> nameOfTests;
 

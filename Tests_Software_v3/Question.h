@@ -18,8 +18,9 @@ class Question
     std::string question;
     std::vector<Answer> allAnswers;
 public:
-    virtual int checkAnswer(int* answer) const;
-    virtual void display() const;
-    virtual void enterQuestion() const;
+    int checkAnswer(int answer) const;
+    void display() const;
+    void viewTest() const;
+    bool enterQuestion();
 };
 

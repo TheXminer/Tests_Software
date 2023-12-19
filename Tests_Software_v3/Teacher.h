@@ -10,7 +10,6 @@
 //	DeleteSet
 //};
 enum teacherActions {
-	Nothing = -1,
 	CreateTest = 4,
 	EditTest,
 	DeleteTest,
@@ -19,13 +18,14 @@ enum teacherActions {
 class Teacher :
     public Student
 {
-	void addTest();
+	Question* addTest();
 	void addTestSet();
 	void viewTest(std::string testName);
 	void editTestSet(std::string testName);
 	void deleteTestSet(std::string testName);
-	void showActions();
-	void showTestTypes();
+	void showActions() const;
+	void showTestTypes() const;
+	void showEditSetActions() const;
 	void chooseAction(int action);
 	void viewMarks();
 };

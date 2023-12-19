@@ -16,11 +16,11 @@ struct studentAnswerData {
 
 class StudentAnswers
 {
-	std::unordered_map<std::string, std::unordered_map<std::string, studentAnswerData>*> studentAnswers;
+	std::unordered_map<std::string, std::unordered_map<std::string, studentAnswerData*>*> studentAnswers;
 public:
 	std::vector<std::string> studentsNames;
-	bool addStudentAnswer(std::string studentName, std::string nameOfTest, studentAnswerData marks);
-	studentAnswerData getStudentAnswers(std::string studentName, std::string nameOfTest);
+	bool addStudentAnswer(std::string studentName, std::string nameOfTest, studentAnswerData* marks);
+	studentAnswerData* getStudentAnswers(std::string studentName, std::string nameOfTest);
 	bool isTestPassed(std::string studentName, std::string nameOfTest);
 	bool deleteStudentAnswers(std::string studentName, std::string nameOfTest);
 };

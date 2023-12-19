@@ -1,40 +1,46 @@
 #include "Teacher.h"
 
-void Teacher::addTest()
+Question* Teacher::addTest()
 {
-	std::cout << "Enter question:" << std::endl;
-	std::string question;
-	std::cout << "Enter answer:" << std::endl;
-	std::cin >> question;
-	std::string answers;
+	enum choosenTestType { Exit = 1, Return, SingleChoiceTest, MultipleChoiceTest };
+	showTestTypes();
+	int choice;
+	std::cin >> choice;
+	Question* newQuestion = nullptr;
+
+	switch (choice) {
+	case Exit:
+		user->Exit();
+		return nullptr;
+	case Return:
+		return nullptr;
+	case SingleChoiceTest:
+		newQuestion = new Question;
+		if (!newQuestion->enterQuestion()) {
+			delete newQuestion;
+		}
+		return newQuestion;
+		break;
+	case MultipleChoiceTest:
+		//newQuestion = new Question("");
+		break;
+	}
+	return nullptr;
 }
 
 void Teacher::addTestSet()
 {
-	enum choosenTestType { Exit = 1, Return, SingleChoiceTest, MultipleChoiceTest	};
 
 	std::cout << "Enter name for set of tests: " << std::endl;
 	std::string testSetName;
-	std::cin >> testSetName;
+	std::cin.ignore();
+	getline(std::cin, testSetName);
+	//std::cin >> testSetName;
 	while (true) {
-		showTestTypes();
-		int choice;
-		std::cin >> choice;
-		Question* newQuestion;
-
-		switch (choice) {
-		case Exit:
-			user->Exit();
-			return;
-		case Return:
-			return;
-		case SingleChoiceTest:
-			newQuestion = new Question("");
+		Question* question = addTest();
+		if (!question)
 			break;
-		case MultipleChoiceTest:
-			newQuestion = new Question("");
-			break;
-		}
+		editor->addTest(testSetName, question); 
 	}
 }
 
@@ -42,19 +48,53 @@ void Teacher::viewTest(std::string testName)
 {
 	std::vector<Question*>* testSet = editor->getSetOfTests(testName);
 	for (int i = 0; i < testSet->size(); i++) {
-		testSet->at(i)->display();
+		std::cout << i + 1 << ". ";
+		testSet->at(i)->viewTest();
 	}
 }
 
 void Teacher::editTestSet(std::string testName)
 {
-	std::cout << "Choose action:" << std::endl;
-	std::cout << "--(1) Exit" << std::endl;
-	std::cout << "--(2) Return" << std::endl;
-	std::cout << "--(3) Add new test" << std::endl;
-	std::cout << "--(4) Delete exist test" << std::endl;
-	std::cout << "--(5) Edit exist test" << std::endl;
-	std::cout << "--(6) View all test" << std::endl;
+	enum editActions {
+		AddTest = 3,
+		DeleteTest,
+		EditTest,
+		ViewTest
+	};
+	showEditSetActions();
+	int choice;
+	int number;
+	Question* question;
+	std::cin >> choice;
+	switch (choice) {
+	case Exit:
+		user->Exit();
+		break;
+	case Return:
+		break;
+	case editActions::AddTest:
+		question = addTest(); 
+		if (!question)
+			break;
+		editor->addTest(testName, question);
+		break;
+	case editActions::DeleteTest:
+		std::cout << "Enter delete test number: ";
+		std::cin >> number;
+		editor->deleteTest(testName, number - 1);
+		break;
+	case editActions::EditTest:
+		std::cout << "Enter edit test number: ";
+		std::cin >> number;
+		question = addTest(); 
+		if (!question)
+			break;
+		editor->editTest(testName, number, question);
+		break;
+	case editActions::ViewTest:
+		viewTest(testName);
+		break;
+	}
 }
 
 void Teacher::deleteTestSet(std::string testName)
@@ -62,25 +102,35 @@ void Teacher::deleteTestSet(std::string testName)
 	editor->deleteSetOfTests(testName);
 }
 
-void Teacher::showActions()
+void Teacher::showActions() const
 {
 	std::cout << "Available actions:" << std::endl;
-	std::cout << "--(1) Exit" << std::endl;
+	std::cout << "--(" << Exit << ") Exit" << std::endl;
 	std::cout << "--(2) Start test" << std::endl;
 	std::cout << "--(3) View marks" << std::endl;
 	std::cout << "--(4) Create new test" << std::endl;
 	std::cout << "--(5) Edit test" << std::endl;
 	std::cout << "--(6) Delete test" << std::endl;
-	//std::cout << "--(7) View test" << std::endl;
 }
 
-void Teacher::showTestTypes()
+void Teacher::showTestTypes() const
 {
 	std::cout << "Available types:" << std::endl;
-	std::cout << "--(1) Exit" << std::endl;
-	std::cout << "--(2) Return" << std::endl;
+	std::cout << "--(" << Exit << ") Exit" << std::endl;
+	std::cout << "--(" << Return << ") Return" << std::endl;
 	std::cout << "--(3) Single choise" << std::endl;
 	std::cout << "--(4) Multiple choise" << std::endl;
+}
+
+void Teacher::showEditSetActions() const
+{
+	std::cout << "Choose action:" << std::endl;
+	std::cout << "--(" << Exit << ") Exit" << std::endl; 
+	std::cout << "--(" << Return << ") Return" << std::endl; 
+	std::cout << "--(3) Add new test" << std::endl;
+	std::cout << "--(4) Delete exist test" << std::endl;
+	std::cout << "--(5) Edit exist test" << std::endl;
+	std::cout << "--(6) View all test" << std::endl;
 }
 
 void Teacher::chooseAction(int action)
@@ -114,18 +164,16 @@ void Teacher::chooseAction(int action)
 
 void Teacher::viewMarks()
 {
-	int choice = chooseTest();
-	if (choice == Nothing)
-		return;
-	std::string testName = editor->nameOfTests[choice];
-
 	bool isTyped = false;
-	int choose = chooseTest();
+	int choice = chooseTest();
+	if (choice == Nothing) 
+		return;
 	for (int i = 0; i < studentAnswers->studentsNames.size(); i++) {
-		studentAnswerData marks = studentAnswers->getStudentAnswers(studentAnswers->studentsNames[i], testName);
-		if (marks.marks) {
-			std::cout << studentAnswers->studentsNames[i] << " (" << sumOfMarks(marks.marks) << "): ";
-			printMarks(marks.marks);
+		studentAnswerData* marks = studentAnswers->getStudentAnswers(studentAnswers->studentsNames[i], editor->nameOfTests[choice]);
+		if (marks && marks->marks) {
+			std::cout << studentAnswers->studentsNames[i] << " (" << marks->usedTime / 60 << "m " << marks->usedTime % 60 << "s, " << sumOfMarks(marks->marks) << "): ";
+			printMarks(marks->marks);
+			std::cout << std::endl;
 			isTyped = true;
 		}
 	}

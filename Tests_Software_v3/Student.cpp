@@ -25,7 +25,7 @@ std::vector<int>* Student::transformOrder(std::vector<int>* currentMarks, int* k
 	return currentMarks;
 }
 
-void Student::printMarks(std::vector<int>* marks)
+void Student::printMarks(std::vector<int>* marks) const
 {
 	int size = marks->size();
 	for (int i = 0; i < size; i++) {
@@ -34,7 +34,7 @@ void Student::printMarks(std::vector<int>* marks)
 	std::cout << std::endl;
 }
 
-void Student::showActions()
+void Student::showActions() const
 {
 	std::cout << "Available actions:" << std::endl;
 	std::cout << "--(1) Exit" << std::endl;
@@ -45,47 +45,61 @@ void Student::showActions()
 void Student::startTest(std::string testName)
 {
 	std::vector<Question*>* tests = editor->getSetOfTests(testName);
-	int* answer;
 	int size = tests->size();
 	int* numbersOrder = randomizeNumbers(size);
-	std::vector<int> currentMarks;
+	std::vector<int>* currentMarks = new std::vector<int>;
 	time_t start, end;
 	time(&start);
+	if (studentAnswers->isTestPassed(user->getUserName(), testName)) {
+		std::cout << "Test already passed :)" << std::endl;
+		return;
+	}
 	for (int i = 0; i < size; i++) {
-		tests->at(*numbersOrder)->display();
+		std::cout << i + 1 << ". ";
+		tests->at(numbersOrder[i])->display();
 		std::cout << "Enter your answer: ";
-		std::cin >> *answer;
-		if (*answer == Exit) {
-			user->Exit();
-			return;
-		}
-		if (tests->at(*numbersOrder)->checkAnswer(answer))
-			currentMarks.push_back(1);
-		else currentMarks.push_back(0);
+		int answer;
+		std::cin >> answer;
+		//if (answer == Exit) {
+		//	user->Exit();
+		//	return;
+		//}
+		//if (tests->at(*numbersOrder)->checkAnswer(&answer))
+		//	currentMarks.push_back(1);
+		//else currentMarks.push_back(0);
+		currentMarks->push_back(tests->at(numbersOrder[i])->checkAnswer(answer));
 	}
 	time(&end);
-	studentAnswerData answers(end - start, transformOrder(&currentMarks, numbersOrder));
-	studentAnswers->addStudentAnswer("UnknownGuy", testName, answers);
+	studentAnswerData* answers = new studentAnswerData(end - start, transformOrder(currentMarks, numbersOrder));
+	studentAnswers->addStudentAnswer(user->getUserName(), testName, answers);
 }
 
 void Student::viewMarks()
 {
-	enum viewMarkActions {
-		Exit = 1
-	};
 	int size = editor->nameOfTests.size();
 	for (int i = 0; i < size; i++) {
-		std::vector<int>* marks = studentAnswers->getStudentAnswers("UnknownGuy", editor->nameOfTests[i]).marks;
+		studentAnswerData* answer = studentAnswers->getStudentAnswers(user->getUserName(), editor->nameOfTests[i]);
+		if (!answer)
+			continue;
+		std::vector<int>* marks = answer->marks;
+		time_t usedTime = answer->usedTime;
 		if (marks) {
-			std::cout << editor->nameOfTests[i] << " (" << sumOfMarks(marks) << "): ";
+			std::cout << editor->nameOfTests[i] << " (" <<usedTime/60%60 << "m " << usedTime % 60 << "s, " << sumOfMarks(marks) << "): ";
 			printMarks(marks);
 			std::cout << std::endl;
 		}
 	}
 	int choose = 0;
-	while (choose != Exit) {
-		std::cout << "--(" << Exit << ") Exit" << std::endl;
+	std::cout << "--(" << Exit << ") Exit" << std::endl;
+	std::cout << "--(" << Return << ") Return" << std::endl;
+	while (true) {
 		std::cin >> choose;
+		if (choose == Exit) {
+			user->Exit();
+			return;
+		}
+		if (choose == Return)
+			return;
 	}
 }
 
@@ -120,11 +134,11 @@ int Student::chooseTest()
 		user->Exit();
 		return Nothing;
 	}
-	if (userChoice == Return)
+	if (userChoice == Return || userChoice > editor->nameOfTests.size() + 2 || userChoice < 1)
 		return Nothing;
-	if (userChoice > editor->nameOfTests.size() + 3 || userChoice < 1) {		
-		return chooseTest();
-	}
+	//if (userChoice > editor->nameOfTests.size() + 2 || userChoice < 1) {		
+	//	return Nothing;
+	//}
 	return userChoice - 3;
 }
 

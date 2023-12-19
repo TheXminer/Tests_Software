@@ -1,5 +1,16 @@
 #include "Editor.h"
 
+bool Editor::deleteTestSetName(std::string nameOfSet)
+{
+	for (int i = 0; i < nameOfTests.size(); i++) {
+		if (nameOfTests[i] == nameOfSet) {
+			nameOfTests.erase(nameOfTests.begin() + i);
+			return true;
+		}
+	}
+	return false;
+}
+
 void Editor::addTest(std::string nameOfSet, Question* question) {
 	try {
 		std::vector<Question*>* setOfQuestions = setOfTests.at(nameOfSet);
@@ -21,6 +32,8 @@ void Editor::deleteTest(std::string nameOfSet, int nOfTest) {
 		if (setOfQuestions->begin() + nOfTest > setOfQuestions->end())
 			return;
 		setOfQuestions->erase(setOfQuestions->begin() + nOfTest);
+		if (setOfQuestions->size() != 0)
+			return;
 		for (int i = 0; i < nameOfTests.size(); i++) {
 			if (nameOfTests[i] == nameOfSet) {
 				nameOfTests.erase(nameOfTests.cbegin() + i);
@@ -38,7 +51,9 @@ void Editor::editTest(std::string nameOfSet, int nOfTest, Question* question) {
 		std::vector<Question*>* setOfQuestions = setOfTests.at(nameOfSet);
 		if (setOfQuestions->begin() + nOfTest > setOfQuestions->end())
 			return;
+		Question* toDelete = setOfQuestions->at(nOfTest);
 		setOfQuestions->emplace(setOfQuestions->begin() + nOfTest, question);
+		delete toDelete;
 	}
 	catch (const std::exception& e) {
 		return;
@@ -70,6 +85,7 @@ std::vector<Question*>* Editor::getSetOfTests(std::string nameOfSet) {
 void Editor::deleteSetOfTests(std::string nameOfSet) {
 	try {
 		setOfTests.erase(nameOfSet);
+		deleteTestSetName(nameOfSet);
 		return;
 	}
 	catch (const std::exception& e) {

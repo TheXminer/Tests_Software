@@ -1,6 +1,5 @@
 #pragma once
 #include <random>
-#include <chrono>
 #include "StudentAnswers.h"
 #include "Editor.h"
 #include "User.h"
@@ -13,6 +12,13 @@
 //};
 class Student
 {
+	enum studentActions {
+		Nothing = -1,
+		Return = 1,
+		Exit = 1,
+		StartTest,
+		ViewMyMarks,
+	};
 	void swap(int* a, int* b);
 	int* randomizeNumbers(int size);
 	std::vector<int>* transformOrder(std::vector<int>* currentMarks, int* key);

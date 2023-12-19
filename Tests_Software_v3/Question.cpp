@@ -1,35 +1,22 @@
 #include "Question.h"
 
-const std::string& Question::getQuestionText() const
+int Question::checkAnswer(int* answerNumber) const
 {
-    return questionText;
-}
-
-void Question::addAnswer(char option, const std::string& text, bool isCorrect)
-{
-    answers.push_back(Answer(option, text, isCorrect));
-}
-
-const std::vector<Answer>& Question::getAnswers() const
-{
-    return answers;
+    if(allAnswers[*answerNumber-1].checkIsCorrect())
+        return mark;
+    return 0;
 }
 
 void Question::display() const
 {
-    std::cout << "Question: " << getQuestionText() << std::endl;
-    std::cout << "Answers:" << std::endl;
+    std::cout << question << std::endl;
+    for (int i = 0; i < allAnswers.size(); i++) {
+        std::cout << allAnswers[i].getAnswer() << std::endl;
 
-    for (const auto& answer : answers)
-    {
-        std::cout << "- " << answer.getOption() << ". " << answer.getText() << std::endl;
     }
 }
 
-bool Question::checkAnswer(char userAnswer) const
+void Question::enterQuestion() const
 {
-    auto it = find_if(answers.begin(), answers.end(),
-        [userAnswer](const Answer& answer) { return answer.getOption() == userAnswer; });
 
-    return it != answers.end() && it->isCorrectAnswer();
 }

@@ -3,13 +3,14 @@
 
 class Answer
 {
-    char option;
-    std::string text;
-    bool isCorrect;
+    int number;
+    std::string answerText;
+    bool isTrue;
 public:
-    Answer(char option, const std::string& text, bool isCorrect) : option(option), text(text), isCorrect(isCorrect) {}
-    char getOption() const;
-    const std::string& getText() const;
-    bool isCorrectAnswer() const;
+    Answer() : number(0), answerText(""), isTrue(false){}
+    Answer(int number, std::string answerText, bool isTrue) :number(number), answerText(answerText), isTrue(isTrue) {};
+    std::string getAnswer() const;
+    bool checkIsCorrect() const;
+    int getNumber() const;
 };
 

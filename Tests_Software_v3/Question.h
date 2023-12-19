@@ -2,6 +2,8 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include <algorithm>
+#include <memory>
 #include "Answer.h"
 enum type_of_test {
     SINGLE_CHOISE, // equal 0
@@ -12,16 +14,12 @@ enum type_of_test {
 
 class Question
 {
-    std::string questionText;
-    std::vector<Answer> answers;
+    int mark;
+    std::string question;
+    std::vector<Answer> allAnswers;
 public:
-    Question(const std::string& questionText) : questionText(questionText) {}
-
-    const std::string& getQuestionText() const;
-    virtual void addAnswer(char option, const std::string& text, bool isCorrect);
-    const std::vector<Answer>& getAnswers() const;
+    virtual int checkAnswer(int* answer) const;
     virtual void display() const;
-    bool checkAnswer(char userAnswer) const;
-    virtual ~Question() {}
+    virtual void enterQuestion() const;
 };
 

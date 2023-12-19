@@ -45,26 +45,27 @@ void Student::showActions()
 void Student::startTest(std::string testName)
 {
 	std::vector<Question*>* tests = editor->getSetOfTests(testName);
-	std::string answer;
+	int* answer;
 	int size = tests->size();
 	int* numbersOrder = randomizeNumbers(size);
 	std::vector<int> currentMarks;
-	auto start = std::chrono::high_resolution_clock::now();
+	time_t start, end;
+	time(&start);
 	for (int i = 0; i < size; i++) {
 		tests->at(*numbersOrder)->display();
 		std::cout << "Enter your answer: ";
-		std::cin >> answer;
-		if (answer == "exit") {
+		std::cin >> *answer;
+		if (*answer == Exit) {
 			user->Exit();
 			return;
 		}
-		if (tests->at(*numbersOrder)->checkAnswer(answer[0]))
+		if (tests->at(*numbersOrder)->checkAnswer(answer))
 			currentMarks.push_back(1);
 		else currentMarks.push_back(0);
 	}
-	auto end = std::chrono::high_resolution_clock::now();
-	studentAnswers->addStudentAnswer("UnknownGuy", testName, transformOrder(&currentMarks, numbersOrder));
-	//ADD SAVE TIME
+	time(&end);
+	studentAnswerData answers(end - start, transformOrder(&currentMarks, numbersOrder));
+	studentAnswers->addStudentAnswer("UnknownGuy", testName, answers);
 }
 
 void Student::viewMarks()
@@ -74,7 +75,7 @@ void Student::viewMarks()
 	};
 	int size = editor->nameOfTests.size();
 	for (int i = 0; i < size; i++) {
-		std::vector<int>* marks = studentAnswers->getStudentAnswers("UnknownGuy", editor->nameOfTests[i]);
+		std::vector<int>* marks = studentAnswers->getStudentAnswers("UnknownGuy", editor->nameOfTests[i]).marks;
 		if (marks) {
 			std::cout << editor->nameOfTests[i] << " (" << sumOfMarks(marks) << "): ";
 			printMarks(marks);
@@ -99,11 +100,11 @@ int Student::sumOfMarks(std::vector<int>* marks)
 
 int Student::chooseTest()
 {
-	enum choosetestActions {
-		Nothing = -1,
-		Exit = 1,
-		Return
-	};
+	//enum choosetestActions {
+	//	Nothing = -1,
+	//	Exit = 1,
+	//	Return
+	//};
 
 	std::cout << "Choose test:" << std::endl;
 	std::cout << "--(" << Exit << ") Exit" << std::endl;
@@ -113,38 +114,32 @@ int Student::chooseTest()
 	} else for (int i = 0; i < editor->nameOfTests.size(); i++) {
 		std::cout << "--(" << i + 3 << ") " << editor->nameOfTests[i]<<std::endl;
 	}
-	int userChoose;
-	std::cin >> userChoose;
-	if (userChoose == Exit) {
+	int userChoice;
+	std::cin >> userChoice;
+	if (userChoice == Exit) {
 		user->Exit();
 		return Nothing;
 	}
-	if (userChoose == Return)
+	if (userChoice == Return)
 		return Nothing;
-	if (userChoose > editor->nameOfTests.size() + 3 || userChoose < 1) {		
+	if (userChoice > editor->nameOfTests.size() + 3 || userChoice < 1) {		
 		return chooseTest();
 	}
-	return userChoose - 3;
+	return userChoice - 3;
 }
 
 void Student::chooseAction(int action)
 {
-	enum studentActions {
-		Nothing = -1,
-		Exit = 1,
-		StartTest,
-		ViewMyMarks,
-	};
-	int choose;
+	int choise;
 	switch (action) {
 	case Exit:
 		user->Exit();
 		break;
 	case StartTest:
-		choose = chooseTest();
-		if (choose == Nothing)
+		choise = chooseTest();
+		if (choise == Nothing)
 			return; 
-		startTest(editor->nameOfTests[choose]);
+		startTest(editor->nameOfTests[choise]);
 		break;
 	case ViewMyMarks:
 		viewMarks();

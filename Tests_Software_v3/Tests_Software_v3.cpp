@@ -5,6 +5,7 @@ int main()
 {
     Test test;
 	test.startApplication();
+
 	//Question* question = new SingleChoiceTest("Who are you?");;
 	//question->addAnswer('a', "Master", false);
 	//question->addAnswer('b', "Slave", true);

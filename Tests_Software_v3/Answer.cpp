@@ -1,16 +1,16 @@
 #include "Answer.h"
 
-char Answer::getOption() const
+std::string Answer::getAnswer() const
 {
-    return option;
+	return answerText;
 }
 
-const std::string& Answer::getText() const
+bool Answer::checkIsCorrect() const
 {
-    return text;
+	return isTrue;
 }
 
-bool Answer::isCorrectAnswer() const
+int Answer::getNumber() const
 {
-    return isCorrect;
+	return number;
 }

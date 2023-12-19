@@ -1,14 +1,19 @@
 #pragma once
 #include <string>
+enum status {
+	NonAuthorized,
+	AuthorizedAsStudent,
+	AuthorizedAsAdmin
+};
 
 class User
 {
-protected:
-	bool isAdmin = false;
-	bool isAccessAvailable = false;
+	std::string userName;
+	status authorizeStatus = NonAuthorized;
 public:
-	bool logIn(std::string user);
-	bool checkAccess();
-	bool Exit();
+	std::string getUserName();
+	status logIn(std::string user);
+	status checkAccess();
+	status Exit();
 };
 

@@ -13,15 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Questions">
+      <UniqueIdentifier>{dd6e5b9c-4696-4015-8db6-2d542ac8c23e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Questions">
+      <UniqueIdentifier>{91fe879e-8057-414b-ae83-f5c0005edd57}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Tests_Software_v3.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Question.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SetQA.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Editor.cpp">
@@ -33,17 +33,29 @@
     <ClCompile Include="Test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Answers.cpp">
+    <ClCompile Include="MultipleChoiseQuestion.cpp">
+      <Filter>Source Files\Questions</Filter>
+    </ClCompile>
+    <ClCompile Include="SingleChoiseQuestion.cpp">
+      <Filter>Source Files\Questions</Filter>
+    </ClCompile>
+    <ClCompile Include="Answer.cpp">
+      <Filter>Source Files\Questions</Filter>
+    </ClCompile>
+    <ClCompile Include="StudentAnswers.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Student.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Teacher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Question.cpp">
+      <Filter>Source Files\Questions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Question.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SetQA.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Editor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -53,8 +65,26 @@
     <ClInclude Include="Test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Answers.h">
+    <ClInclude Include="MultipleChoiseQuestion.h">
+      <Filter>Header Files\Questions</Filter>
+    </ClInclude>
+    <ClInclude Include="SingleChoiseQuestion.h">
+      <Filter>Header Files\Questions</Filter>
+    </ClInclude>
+    <ClInclude Include="Answer.h">
+      <Filter>Header Files\Questions</Filter>
+    </ClInclude>
+    <ClInclude Include="StudentAnswers.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Student.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Teacher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Question.h">
+      <Filter>Header Files\Questions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

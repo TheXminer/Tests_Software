@@ -1,22 +1,28 @@
 #pragma once
-#include "Editor.h"
-#include "User.h"
-#include "Answers.h"
+#include <stdio.h>
+#include "Teacher.h"
+
+//enum userAction {
+//	Exit,
+//	StartTest,
+//	ViewMarks,
+//	ViewTest,
+//	Edit,
+//	Delete,
+//	Add,
+//	DeleteSet
+//};
+
 class Test
 {
+	StudentAnswers studentAnswers;
 	Editor editor;
-	bool isTestStarted = false;
-	std::unordered_set<std::string,std::vector<Answers>> answers;
-public:
 	User user;
-//Student
-	int startTest(int nTest = 1);
-	int endTest();
-	SetQA* getTest(int i);
-	int giveAnswer(int answers);
-//Teacher
-	bool createNewTest(std::vector<SetQA*>);
-	std::vector<SetQA> viewTest(std::string testName);
-	SetQA* editTest(std::string testName, int questionNumber);
-	std::vector<Answers> viewUserAnswers(std::string testName);
+	void authorize();
+	//userAction getAction(std::string nameOfAction);
+	//void studentActions();//stud
+	//void teacherActions();//teach
+	//void showTeacherAction();
+public:
+	void startApplication();
 };

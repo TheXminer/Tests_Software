@@ -128,7 +128,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="MultipleChoiseQuestion.cpp" />
-    <ClCompile Include="SingleChoiseQuestion.cpp" />
     <ClCompile Include="Editor.cpp" />
     <ClCompile Include="Question.cpp" />
     <ClCompile Include="Answer.cpp" />
@@ -141,7 +140,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MultipleChoiseQuestion.h" />
-    <ClInclude Include="SingleChoiseQuestion.h" />
     <ClInclude Include="Editor.h" />
     <ClInclude Include="Question.h" />
     <ClInclude Include="Answer.h" />

@@ -4,23 +4,26 @@
 #include <vector>
 #include <algorithm>
 #include <memory>
+#include <ctime>
+#include <time.h> 
 #include "Answer.h"
-enum type_of_test {
-    SINGLE_CHOISE, // equal 0
-    MULTIPLE_CHOISE, // equal 1
-    MATCHING_CHOISE // equal 2
-    // Add other types of tests
-};
 
 class Question
 {
+protected:
     int mark;
     std::string question;
+    int* randomizedOrder = nullptr;
+    int* decodeOrder = nullptr;
     std::vector<Answer> allAnswers;
+    std::vector<int> correctAnswersIndex;
+    void randomizeAnswersOrder();
+    virtual bool fullAnswers();
 public:
     int checkAnswer(int answer) const;
-    void display() const;
-    void viewTest() const;
+    virtual int checkEnterQuestion();
+    virtual void display();
+    virtual void viewTest() const;
     bool enterQuestion();
 };
 

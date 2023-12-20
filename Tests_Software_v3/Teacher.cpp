@@ -22,7 +22,11 @@ Question* Teacher::addTest()
 		return newQuestion;
 		break;
 	case MultipleChoiceTest:
-		//newQuestion = new Question("");
+		newQuestion = new MultipleChoiceQuestion;
+		if (!newQuestion->enterQuestion()) {
+			delete newQuestion;
+		}
+		return newQuestion;
 		break;
 	}
 	return nullptr;

@@ -57,9 +57,7 @@ void Student::startTest(std::string testName)
 	for (int i = 0; i < size; i++) {
 		std::cout << i + 1 << ". ";
 		tests->at(numbersOrder[i])->display();
-		std::cout << "Enter your answer: ";
-		int answer;
-		std::cin >> answer;
+		int mark = tests->at(numbersOrder[i])->checkEnterQuestion();
 		//if (answer == Exit) {
 		//	user->Exit();
 		//	return;
@@ -67,11 +65,12 @@ void Student::startTest(std::string testName)
 		//if (tests->at(*numbersOrder)->checkAnswer(&answer))
 		//	currentMarks.push_back(1);
 		//else currentMarks.push_back(0);
-		currentMarks->push_back(tests->at(numbersOrder[i])->checkAnswer(answer));
+		currentMarks->push_back(mark);
 	}
 	time(&end);
 	studentAnswerData* answers = new studentAnswerData(end - start, transformOrder(currentMarks, numbersOrder));
 	studentAnswers->addStudentAnswer(user->getUserName(), testName, answers);
+	delete numbersOrder;
 }
 
 void Student::viewMarks()

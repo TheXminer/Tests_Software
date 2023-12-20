@@ -5,12 +5,10 @@ class Answer
 {
     int number;
     std::string answerText;
-    bool isTrue;
 public:
-    Answer() : number(0), answerText(""), isTrue(false){}
-    Answer(int number, std::string answerText, bool isTrue) :number(number), answerText(answerText), isTrue(isTrue) {};
+    Answer() : number(0), answerText("") {}
+    Answer(int number, std::string answerText) :number(number), answerText(answerText) {};
     std::string getAnswer() const;
-    bool checkIsCorrect() const;
     int getNumber() const;
 };
 

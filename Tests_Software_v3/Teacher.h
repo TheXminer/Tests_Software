@@ -1,6 +1,5 @@
 #pragma once
 #include "Student.h"
-#include "SingleChoiseQuestion.h"
 #include "MultipleChoiseQuestion.h"
 //enum actionTeacher {
 //	ViewTest = 4,

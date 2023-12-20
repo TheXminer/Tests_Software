@@ -5,6 +5,7 @@ bool Editor::deleteTestSetName(std::string nameOfSet)
 	for (int i = 0; i < nameOfTests.size(); i++) {
 		if (nameOfTests[i] == nameOfSet) {
 			nameOfTests.erase(nameOfTests.begin() + i);
+			setOfTests.erase(nameOfSet);
 			return true;
 		}
 	}
@@ -37,6 +38,7 @@ void Editor::deleteTest(std::string nameOfSet, int nOfTest) {
 		for (int i = 0; i < nameOfTests.size(); i++) {
 			if (nameOfTests[i] == nameOfSet) {
 				nameOfTests.erase(nameOfTests.cbegin() + i);
+				setOfTests.erase(nameOfSet);
 			}
 		}
 		return;

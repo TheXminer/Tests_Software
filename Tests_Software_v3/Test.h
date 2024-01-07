@@ -1,6 +1,7 @@
 #pragma once
 #include <stdio.h>
-#include "Teacher.h"
+//#include "Admin.h"
+#include "ClientAction.h"
 
 //enum userAction {
 //	Exit,
@@ -17,7 +18,7 @@ class Test
 {
 	StudentAnswers studentAnswers;
 	Editor editor;
-	User user;
+	//User user;
 	void authorize();
 	//userAction getAction(std::string nameOfAction);
 	//void studentActions();//stud

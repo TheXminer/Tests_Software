@@ -16,14 +16,12 @@ void Editor::addTest(std::string nameOfSet, Question* question) {
 	try {
 		std::vector<Question*>* setOfQuestions = setOfTests.at(nameOfSet);
 		setOfQuestions->push_back(question);
-		return;
 	}
 	catch (const std::exception& e) {
 		std::vector<Question*>* newSetOfQuestion = new std::vector<Question*>;
 		newSetOfQuestion->push_back(question);
 		setOfTests.insert({ nameOfSet, newSetOfQuestion });
 		nameOfTests.push_back(nameOfSet);
-		return;
 	}
 }
 
@@ -41,10 +39,8 @@ void Editor::deleteTest(std::string nameOfSet, int nOfTest) {
 				setOfTests.erase(nameOfSet);
 			}
 		}
-		return;
 	}
 	catch (const std::exception& e) {
-		return;
 	}
 }
 
@@ -55,10 +51,8 @@ void Editor::editTest(std::string nameOfSet, int nOfTest, Question* question) {
 			return;
 		Question* toDelete = setOfQuestions->at(nOfTest);
 		setOfQuestions->emplace(setOfQuestions->begin() + nOfTest, question);
-		delete toDelete;
 	}
 	catch (const std::exception& e) {
-		return;
 	}
 }
 
@@ -88,9 +82,7 @@ void Editor::deleteSetOfTests(std::string nameOfSet) {
 	try {
 		setOfTests.erase(nameOfSet);
 		deleteTestSetName(nameOfSet);
-		return;
 	}
 	catch (const std::exception& e) {
-		return;
 	}
 }

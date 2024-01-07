@@ -53,30 +53,32 @@
 
 void Test::authorize()
 {
-	while (user.checkAccess() == NonAuthorized) 
-	{
-		std::cout << "Log in. Enter your usernme (admin/user): ";
-		std::string username;
-		std::cin >> username;
-		user.logIn(username);
-	}
+	//while (user.checkAccess() == NonAuthorized) 
+	//{
+	//	std::cout << "Log in. Enter your usernme (admin/user): ";
+	//	std::string username;
+	//	std::cin >> username;
+	//	user.logIn(username);
+	//}
 }
 
 void Test::startApplication()
 {
+	ClientAction *client = new ClientAction(new AuthorizeAction, &editor, &studentAnswers);
 	while (true) {
-		authorize();
+		//authorize();
 
-		if (user.checkAccess() == AuthorizedAsStudent) {
-			std::cout << "Authorized as user" <<std::endl;
-			Student student;
-			student.activate(&editor, &studentAnswers, &user);
-		}
+		//if (user.checkAccess() == AuthorizedAsStudent) {
+		//	std::cout << "Authorized as user" <<std::endl;
+		//	Student student;
+		//	student.activate(&editor, &studentAnswers, &user);
+		//}
 
-		if (user.checkAccess() == AuthorizedAsAdmin) {
-			std::cout << "Authorized as admin" << std::endl;
-			Teacher teacher;
-			teacher.activate(&editor, &studentAnswers, &user);
-		}
+		//if (user.checkAccess() == AuthorizedAsAdmin) {
+		//	std::cout << "Authorized as admin" << std::endl;
+		//	Admin teacher;
+		//	teacher.activate(&editor, &studentAnswers, &user);
+		//}
+		client->start();
 	}
 }
